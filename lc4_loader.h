@@ -30,3 +30,8 @@ FILE* open_file(char* file_name) ;
  * returns 0 upon successs, non-zero if an error occurs.
  */
 int parse_file (FILE* my_obj_file, row_of_memory** memory) ;
+
+
+int read_next_half(FILE* my_obj_file, unsigned short* half) ;
+int parse_obj(unsigned short type, unsigned short address, unsigned short n, FILE* my_obj_file, row_of_memory** head) ;
+

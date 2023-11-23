@@ -40,4 +40,9 @@ void print_list		      (row_of_memory* head ) ;
 
 int delete_list    	      (row_of_memory** head ) ;
 
+
+
+row_of_memory* create_node(short unsigned int address, short unsigned int contents) ;
+void delete_linked_list(row_of_memory* head) ;
+
 #endif
