@@ -27,9 +27,8 @@ int main (int argc, char** argv) {
 	/* step 1: create head pointer to linked list: memory 	*/
 	/* do not change this line - there should no be malloc calls in main() */
 	
-	row_of_memory* memory = NULL ;
-
-
+	row_of_memory* memory = NULL ; 
+	
 	/* step 2: determine filename, then open it		*/
 	/*   TODO: extract filename from argv, pass it to open_file() */
   
@@ -55,9 +54,7 @@ int main (int argc, char** argv) {
 	int parse_result = parse_file (obj_file,  &memory);
 	printf("parse_result = %d. \n", parse_result);
 	fclose(obj_file); 
-  
-	//print linkedList
-	print_list (memory);
+   
 	 
 	/* step 4: call function: reverse_assemble() in lc4_disassembler.c */
 	/*   TODO: call function & check for errors		*/
@@ -65,6 +62,8 @@ int main (int argc, char** argv) {
 
 	/* step 5: call function: print_list() in lc4_memory.c 	*/
 	/*   TODO: call function 				*/
+	//print linkedList
+	print_list (memory);
 
 
 	/* step 6: call function: delete_list() in lc4_memory.c */

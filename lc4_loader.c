@@ -116,25 +116,31 @@ int label_section (FILE* my_obj_file, row_of_memory** memory){
     unsigned short int address_comb = (address[0]<<8 )  | address[1];  
     unsigned short int num_commands_comb = (num_commands[0]<<8)  | num_commands[1]; 
     int signedInt = (int) num_commands_comb ;
+    //printf("address is: %04x \n", address_comb); 
     //printf("number of elements: %d \n", signedInt ); 
     char label_letter ;
 
     // search the node with the address
     row_of_memory* head = *memory;
+    //row_of_memory** ptr = memory;
     row_of_memory* node = search_address(head, address_comb);
-    // if the address is not found, return 1
+
+    // if the address is not found, need to create a new node 
     if(node == NULL){
-        perror("parse_obj() failed");
-        return 1;
+        add_to_list (memory, address_comb, 0x0000);
+        //search node again
+        node = search_address(head, address_comb);
     }
     // allocate memory for the label
     node->label = malloc(sizeof(char) * signedInt + 1);
-    char label_string[signedInt];
     // Check if memory allocation was successful
     if (node->label == NULL) {
         perror("Memory allocation failed");
         return 1;
     }
+    //create a string to hold contents
+    char label_string[signedInt];
+    
     //convert hex to characters
     for (int k = 0; k< signedInt; ++k) {  
         c =  fgetc(my_obj_file);
@@ -160,11 +166,13 @@ char hexToChar(unsigned short int  hexValue) {
          
         return (char)('0' + (hexValue-0x30));
     } else if (hexValue >= 0x41 && hexValue <= 0x5A) {
-        // If it's a letter (A-F)
+        // If it's a letter (A-Z)
         return (char)('A' + (hexValue - 0x41));
     }else if (hexValue >= 0x61 && hexValue <= 0x7A) {
-        // If it's a letter (A-F)
+        // If it's a letter (a-z)
         return (char)('a' + (hexValue - 0x61));
+    }else if (hexValue == 0x5F) {// If it's "_"
+        return (char)('_');
     }
    else {
         // Handle invalid input

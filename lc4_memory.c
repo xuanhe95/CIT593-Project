@@ -103,28 +103,26 @@ row_of_memory* search_opcode  (row_of_memory* head,
 	/* return NULL if list is empty or if no matching nodes */
 	return NULL ;
 }
-
-//To be reformated as shown in Part 3
+ 
 void print_list (row_of_memory* head )
 {
 	/* make sure head isn't NULL */
   if(head == NULL){
 		printf("head of the linkedList is missing.");
 		return;
-	}
-	/* print out a header */
-  printf("the head's address is %04x. \n", head->address);
-	printf("the head's content is %04x. \n", head->contents);
-	printf("the head's label is %s. \n", head->label);
-
+	} 
+	/* print out a header */  
+	printf("<label>  \t %-20s  %-20s  %-20s \n", "<address>           ", "<contents>          ", "<assembly>         "); 
+	 
   /* don't print assembly directives for non opcode 1 instructions if you are doing extra credit */
- 
 	/* traverse linked list, print contents of each node */
-  row_of_memory* current = head->next; 
+  row_of_memory* current = head; 
 	while (current != NULL) {
-        printf("current's address is %04x  \n", current->address);
-				printf("current's contents: %04x \n",  current->contents); 
-        printf("current's label is %s \n", current->label);
+		    printf("%s \t  %-20.04x %-20.04x %-20s \n", current->label, current->address,current->contents, current->assembly); 
+	 
+        //printf("current's address is %04x  \n", current->address);
+				//printf("current's contents: %04x \n",  current->contents); 
+        //printf("current's label is %s \n", current->label);
         current = current->next;
     } 
 	 
