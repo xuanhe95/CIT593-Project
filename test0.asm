@@ -1,0 +1,2 @@
+ADD R1, R0, R1
+MUL R2, R1, R1
