@@ -10,6 +10,7 @@
 #include "lc4_memory.h"
 #include <string.h>
 
+
 int reverse_assemble (row_of_memory* memory){
   /* binary constants should be proceeded by a 0b as in 0b011 for decimal 3 */ 
 	/* make sure head isn't NULL */
@@ -29,7 +30,7 @@ int reverse_assemble (row_of_memory* memory){
             break; 
         } 
         // allocate memory for the assembly
-        current->assembly = malloc(15+ 1); //15 is the length of ops - max when add with -IMM
+        current->assembly = (char*) malloc(15+ 1); //15 is the length of ops - max when add with -IMM
         // Check if memory allocation was successful
         if (current->assembly == NULL) { 
             fprintf(stderr, "Memory allocation failed.\n");

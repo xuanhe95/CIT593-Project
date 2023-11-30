@@ -7,6 +7,7 @@
 /************************************************************************/
 
 #include <stdio.h>
+#include <stdlib.h>
 #include "lc4_memory.h"
 
 /* declarations of functions that must defined in lc4_loader.c */
@@ -40,4 +41,5 @@ char hexToChar(unsigned short int  hexValue) ;
 
 int read_next_half(FILE* my_obj_file, unsigned short* half) ;
 int parse_obj(unsigned short type, unsigned short address, unsigned short n, FILE* my_obj_file, row_of_memory** head) ;
+int read_next_char(FILE* my_obj_file, unsigned char* c) ;
 

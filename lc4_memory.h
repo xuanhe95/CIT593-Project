@@ -9,6 +9,10 @@
 #ifndef LC4_MEMORY_H
 #define LC4_MEMORY_H
 
+// for clang
+#include <stdlib.h>
+
+
 /*
  * definition of linked list node
  */
@@ -38,7 +42,7 @@ row_of_memory* search_opcode  (row_of_memory* head,
 
 void print_list		      (row_of_memory* head ) ;
 
-int delete_list    	      (row_of_memory** head ) ;
+//int delete_list    	      (row_of_memory** head ) ;
 
 
 
@@ -53,10 +57,7 @@ int getMulSubDiv(unsigned short int instruction, row_of_memory* node, int OPS);
 
 
 
-
-
-
 // added by xhz
-row_of_memory* create_node(short unsigned int address, short unsigned int contents) ;
+//row_of_memory* create_node(short unsigned int address, short unsigned int contents) ;
 void delete_linked_list(row_of_memory* head) ;
 #endif
