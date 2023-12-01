@@ -61,6 +61,9 @@ int reverse_assemble (row_of_memory* memory){
                   break;   
 
               default:
+                  // parse error
+                  printf("Error: Invalid opcode.\n");
+                  delete_list(memory);
                   break;  
             }     
         }      
@@ -81,39 +84,62 @@ int getAdd (unsigned short int instruction,row_of_memory* node )
     char result[16] = "ADD R"; 
  
     char strnum1[2];
+    // read first 3 bits
     sprintf(strnum1, "%d", (instruction >> 9) & 7);
-    
+    // add to result
     strcat(result,  strnum1); 
     strcat(result, ", R"); 
 
     char strnum2[2];
+    // read next 3 bits
     sprintf(strnum2, "%d", (instruction >> 6) & 7);
-     
+     // add to result
     strcat(result,  strnum2); 
 
     char strnum3[2];
     //printf("instruction & 0x20 is %d \n",instruction & 0x20); 
     if (instruction & 0x20) //check for IMM
     {   
-        //strcat(result, instruction & 0x1F);
-        strcat(result, ", ");
-        //check for negative IMM
-        if(instruction & 0x8){
-             strcat(result, "-");
-        }
+        // //strcat(result, instruction & 0x1F);
+        // strcat(result, ", ");
+
+
+        // int mask = 1;
+        // for(int i = 0; i < sizeof(int); i++){
+        //     mask = mask << 1;
+        //     mask = mask | 1;
+        // }
+
+        // //printf("mask is %d \n",mask);
+
+        // //printf("instruction & mask is %d \n",instruction & mask);
+
+        // sprintf(strnum3, "%d", instruction & mask);
+        // //printf("strnum3 is %s \n",strnum3);
+        // strcat(result,  strnum3);
+
+
+        // //check for negative IMM
+        // if(instruction & 0x8){
+        //      strcat(result, "-");
+        // }
          
-        sprintf(strnum3, "%d", instruction & 0x1F);
+        // sprintf(strnum3, "%d", instruction & 0x1F);
          
-        strcat(result,  strnum3);
+        // strcat(result,  strnum3);
    
     } else {
         strcat(result, ", R");
+        // read last 3 bits
         sprintf(strnum3, "%d", instruction & 7);
         strcat(result,  strnum3);
         //printf("result is %s \n",result);  
+
+        // // add null terminator
+        // result[12] = '\0';
     }
-    //printf("result is %s \n",result); 
-    result[15] = '\0';   
+    // //printf("result is %s \n",result); 
+    // result[15] = '\0';   
     
     //pass value to node assembly
     strcpy(node->assembly, result); 
@@ -150,7 +176,7 @@ int getMulSubDiv(unsigned short int instruction, row_of_memory* node, int OPS)
     sprintf(strnum3, "%d", (instruction >> 3) & 7);
     strcat(result,  strnum2);
 
-    result[15] = '\0';   
+    result[12] = '\0';   
  
     //pass value to node assembly
     strcpy(node->assembly, result); 
