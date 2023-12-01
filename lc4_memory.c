@@ -21,7 +21,8 @@ int add_to_list (row_of_memory** head,
     /* check to see if there is already an entry for this address and update the contents.  no additional steps required in this case */
     row_of_memory* current = *head;
 		row_of_memory* previous = *head;
-    while (current != NULL) {
+     
+    while (current != NULL && current->address <= address) {
         if (current->address == address ) {
             // if there is already an entry for this address, then update the contents.
             current->contents = contents;
@@ -29,6 +30,7 @@ int add_to_list (row_of_memory** head,
         }
 				previous = current;
         current = current->next;
+         
     } 
     /* allocate memory for a single node */
 		row_of_memory* new_node =(row_of_memory*) malloc(sizeof(row_of_memory)); 
@@ -44,7 +46,7 @@ int add_to_list (row_of_memory** head,
 		new_node->contents = contents;
 		new_node->label = NULL;
 		new_node->assembly = NULL;
-		new_node->next = NULL;
+		new_node->next = current; //if current is null, new node is the last node; if not, new node connects to the current, which is larger than new node's address
 
 	/* if *head is NULL, node created is the new head of the list! */
 	  if (*head == NULL) {
@@ -54,6 +56,7 @@ int add_to_list (row_of_memory** head,
 	/* otherwise, insert node into the list in address ascending order */
 	  else{
 					 previous->next = new_node; 
+           //new_node->next = current;
 		} 
 	/* return 0 for success, -1 if malloc fails */
 

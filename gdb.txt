@@ -1,0 +1,9 @@
+17	in /home/codio/workspace/submit/lc4.c
+Breakpoint 1 at 0x4008ff: file lc4.c, line 55.
+Starting program: /home/codio/workspace/submit/lc4 
+[Inferior 1 (process 623) exited with code 01]
+Undefined command: "".  Try "help".
+Undefined command: "".  Try "help".
+Quit
+Undefined command: "".  Try "help".
+Quit

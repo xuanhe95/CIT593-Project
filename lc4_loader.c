@@ -139,16 +139,16 @@ int label_section (FILE* my_obj_file, row_of_memory** memory){
     if(node == NULL){
         //printf("node is null\n"  );
         //printf("address is: %04x \n", address_comb); 
-        int add_res = add_to_list (memory, address_comb, 0x0000);
-        //printf("add node result: %d \n",add_res);
+        int add_res = add_to_list(memory, address_comb, 0x0000);
+        printf("add node result: %d \n",add_res);
         row_of_memory* current = *memory;
-		row_of_memory* previous = *memory;
+		    //row_of_memory* previous = *memory;
         while (current != NULL) {
-            previous = current;
-            current = current->next;
-        } 
-        //so then previous should be the node just added in 
-        node = previous;
+            if(current->address == address_comb){  
+              node = current;
+			  } // else, go to the next node
+			    current = current->next;
+        }
     }
     //printf("searched node \n" );
     //printf("node address is %04x \n" , node->address);  
