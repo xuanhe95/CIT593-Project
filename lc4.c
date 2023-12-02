@@ -64,7 +64,15 @@ int main (int argc, char** argv) {
 	/* step 5: call function: print_list() in lc4_memory.c 	*/
 	/*   TODO: call function 				*/
 	//print linkedList
+	puts("now print list. \n");
 	print_list (memory);
+
+
+	char* save_filename;
+	if(argc > 1){
+		save_filename = argv[2];
+		print_list_to_file(save_filename, memory, &memory);
+	}
 
 
 	/* step 6: call function: delete_list() in lc4_memory.c */

@@ -22,5 +22,3 @@
  * returns 0 upon success, and non-zero if an error occurs.
  */
 int reverse_assemble (row_of_memory* memory) ;
-
-
